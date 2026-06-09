@@ -3,6 +3,7 @@ package main
 import (
 	"main/types"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/julienschmidt/httprouter"
@@ -16,6 +17,10 @@ func main() {
 			Time: time.Now().UnixMilli(),
 		}, w)
 	})
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
 
-	http.ListenAndServe(":8080", mux)
+	http.ListenAndServe(":"+port, mux)
 }
