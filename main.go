@@ -14,7 +14,7 @@ func main() {
 	mux := httprouter.New()
 	mux.HandlerFunc("POST", "/", func(w http.ResponseWriter, r *http.Request) {
 		easyjson.MarshalToWriter(types.Payload{
-			Time: time.Now().UnixMilli(),
+			Time: time.Now().UnixMicro(),
 		}, w)
 	})
 	port := os.Getenv("PORT")
